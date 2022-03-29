@@ -1,0 +1,27 @@
+From 90983ad261b6e8995fc114d1d354f0d38adee17a Mon Sep 17 00:00:00 2001
+From: Mihir Sahay <mihir.sahay0123@hotmail.com>
+Date: Fri, 18 Mar 2022 22:12:59 +0530
+Subject: [PATCH] Revert "display: ColorBalance: Add support for non-linear
+ native color spaces"
+
+This reverts commit d0c0a6540b56a4b6eb4512c443285caa1508c9f9.
+---
+ .../android/server/display/color/ColorDisplayService.java    | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/services/core/java/com/android/server/display/color/ColorDisplayService.java b/services/core/java/com/android/server/display/color/ColorDisplayService.java
+index 579cec1b60da..38388ea940ba 100644
+--- a/services/core/java/com/android/server/display/color/ColorDisplayService.java
++++ b/services/core/java/com/android/server/display/color/ColorDisplayService.java
+@@ -557,11 +557,6 @@ private void onDisplayColorModeChanged(int mode) {
+         if (mDisplayWhiteBalanceTintController.isAvailable(getContext())) {
+             updateDisplayWhiteBalanceStatus();
+         }
+-
+-        if (mColorBalanceTintController.isAvailable(getContext())) {
+-            mColorBalanceTintController.setUp(getContext(),
+-                    DisplayTransformManager.needsLinearColorMatrix(mode));
+-        }
+     }
+ 
+     private void onAccessibilityActivated() {
